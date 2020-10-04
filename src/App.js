@@ -1,23 +1,23 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Header from './Header.js'
+import ThingsList from './ThingsList.js'
+import Footer from './Footer.js'
+import things from './things.js'
 
 function App() {
+  const [thingsState,setThingsState]=useState(things)
+  function addItem(newItem){
+    setThingsState([...thingsState,{name:newItem,id:thingsState.length+1}])}
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
+        <Header title={'Awesome Tools'} count={thingsState.length} />
+        <ThingsList things={thingsState} addItem= {addItem}/>
+        
+        <Footer />
       </header>
     </div>
   );
